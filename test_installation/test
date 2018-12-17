@@ -3,7 +3,7 @@
 clean_up() {
     rm -rf GM2Calc
     rm -rf build
-    rm -rf example
+    rm -rf example example-c
 }
 
 trap clean_up 0
@@ -30,6 +30,7 @@ export PKG_CONFIG_PATH="GM2Calc/build/local/lib/pkgconfig"
 meson build && \
 cd build && \
 ninja && \
-./example
+./example && \
+./example-c
 
-[ "x$?" != "x0" ] && exit 1
+exit $?
