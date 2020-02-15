@@ -1,5 +1,6 @@
 #include "gm2calc/gm2_1loop.h"
 #include "gm2calc/gm2_2loop.h"
+#include "gm2calc/gm2_config.h"
 #include "gm2calc/gm2_uncertainty.h"
 #include "gm2calc/MSSMNoFV_onshell.h"
 #include <stdio.h>
@@ -84,6 +85,7 @@ int main() {
    const double delta_amu =
       gm2calc_mssmnofv_calculate_uncertainty_amu_2loop(model);
 
+   printf("GM2Calc %s\n", GM2CALC_VERSION);
    printf("amu = %e +- %e\n", amu, delta_amu);
 
    /* destroy model to prevent resource leak */
