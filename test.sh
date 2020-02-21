@@ -1,6 +1,7 @@
 #!/bin/sh
 
 tests="\
+test_FindGM2Calc
 test_installation
 "
 

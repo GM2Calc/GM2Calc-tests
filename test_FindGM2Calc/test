@@ -1,0 +1,34 @@
+#!/bin/sh -xe
+
+repository=${SOURCE:-"https://github.com/GM2Calc/GM2Calc"}
+this_dir="$(realpath $(dirname $0))"
+source_dir="${this_dir}/GM2Calc"
+build_dir="${source_dir}/build"
+install_dir="${build_dir}/local"
+cmake_dir="${source_dir}/cmake"
+
+clean_up() {
+    rm -rf "${source_dir}"
+    rm -rf build
+}
+
+trap clean_up 0
+trap "exit 1" INT QUIT TERM
+
+clean_up
+
+git clone "${repository}" "${source_dir}"
+
+( cd "${source_dir}" && \
+  mkdir build && \
+  cd build && \
+  cmake -DCMAKE_INSTALL_PREFIX="${install_dir}" .. && \
+  make -j4 && \
+  make install )
+
+( mkdir build && \
+  cd build && \
+  cmake -DCMAKE_MODULE_PATH="${cmake_dir}" -DGM2Calc_INCLUDE_DIRS="${install_dir}/include" -DGM2Calc_LIBRARY="${install_dir}/lib" .. && \
+  cmake --build . && \
+  ./example-cpp && \
+  ./example-c )

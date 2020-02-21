@@ -1,9 +1,8 @@
-#!/bin/sh -x
+#!/bin/sh -xe
 
 clean_up() {
     rm -rf GM2Calc
     rm -rf build
-    rm -rf example example-c
 }
 
 trap clean_up 0
@@ -22,15 +21,11 @@ git clone "$source" GM2Calc
   make -j4 && \
   make install )
 
-[ "x$?" != "x0" ] && exit 1
-
 export LD_LIBRARY_PATH="$PWD/GM2Calc/build/local/lib:${LD_LIBRARY_PATH}"
 export PKG_CONFIG_PATH="GM2Calc/build/local/lib/pkgconfig"
 
-meson build && \
-cd build && \
-ninja && \
-./example && \
-./example-c
-
-exit $?
+( meson build && \
+  cd build && \
+  ninja && \
+  ./example && \
+  ./example-c )
