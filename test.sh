@@ -3,6 +3,7 @@
 tests="\
 test_FindGM2Calc
 test_installation
+test_subproject
 "
 
 count=0
