@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED YES)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED YES)
 
-find_package(Boost 1.37.0 REQUIRED)
 find_package(Eigen3 3.1 REQUIRED)
 find_package(GM2Calc REQUIRED)
 
