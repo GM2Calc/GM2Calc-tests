@@ -1,6 +1,6 @@
-# Himalaya integration tests
+# GM2Calc integration tests
 
-This package provides external integration tests for the Himalaya
+This package provides external integration tests for the GM2Calc
 library.  To run all tests execute
 
     ./test.sh
