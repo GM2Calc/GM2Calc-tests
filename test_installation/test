@@ -11,8 +11,9 @@ trap "exit 1" INT QUIT TERM
 clean_up
 
 source=${SOURCE:-"https://github.com/GM2Calc/GM2Calc"}
+branch=${BRANCH:-"master"}
 
-git clone "$source" GM2Calc
+git clone --branch "${branch}" "$source" GM2Calc
 
 ( cd GM2Calc && \
   mkdir build && \
